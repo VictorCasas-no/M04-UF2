@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<album id="1">
+	<title>Nombre</title>
+	<cover src="covers/imagen" />
+	<artists>
+		<artist id="1">Nombre</artist>
+	</artists>
+	<songs>
+		<song id="1">Nombre</song>
+	</songs>
+</album>

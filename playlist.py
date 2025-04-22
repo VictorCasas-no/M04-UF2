@@ -14,6 +14,15 @@ ALBUMS_PATH = "albums/"
 ARTISTS_PATH = "artists/"
 GENRES_PATH = "genres/"
 SONGS_PATH = "songs/"
+COVERS_PATH = "songs/covers/
+
+albums = []
+artists = []
+genres = []
+songs = []
+covers = []
+
+
 
 def menu_opciones():
     while True:
@@ -25,6 +34,14 @@ def menu_opciones():
         print("0. Exit")
 
         eleccion_menu = input("Elige una opción (entre o y 4)")
+
+        if eleccion_menu < 0 or eleccion menu > 4:
+            print("Please, introduce a number between 0 and 4")
+
+        elif eleccion_menu == 0:
+            break
+
+        else:
 
 
 def show_menu_albums():
@@ -50,6 +67,69 @@ def show_menu_genres():
     print("1. List all genres")
     print("2. Search genre by title")
     print("0. Return")
+
+
+def open_xml (file_path):
+    file_xml = open(file_path, "r").read()
+
+    return BeautifulSoup(file_xml, 'xml')
+
+def load_album (album_num):
+    global ALBUMS_PATH
+
+    file_name = "album_"+str(album_num)+".xml"
+
+    file_path = ALBUMS_PATH+file_name
+
+    album_xml = open_xml(file_path)
+    
+    album = {
+            "id": album_xml.album['id'],
+            "title": album_xml.title.text,
+    }
+
+    album = {
+            "id": 1,
+            "title": "TITULO!!!",
+            "cover": "IMAGEN",
+            "artists": [
+                {
+                    "id": 1,
+                    "name": "....."
+                },
+                {
+                    "id": 2,
+                    "name": "....."
+                }
+            ],
+            "songs": [
+                {
+                    "id": 1,
+                    "title": "....."
+                },
+                {
+                    "id": 2,
+                    "title": "....."
+                }
+            ]
+
+        }
+
+    return album_xml
+
+print(load_album(1))
+
+sys.exit()
+
+
+
+
+
+
+
+
+
+
 
 #xml_ejemplo = '<personaje><nombre>Jacinto</nombre><edad valor="33" /></personaje>'
 
