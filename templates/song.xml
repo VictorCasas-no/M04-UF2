@@ -1,0 +1,14 @@
+<? version="1.0" enconding"UTF-8" ?>
+<song>
+	<title></title>
+	<artists>
+		<artist id="1">Skrillex</artist>
+	</artists>
+	<genres>
+		<genre id="1">Dubstep</genre>
+	</genres>
+	<duration second="" />
+	<lyrics lang="en">
+	</lyrics>
+
+</song>
