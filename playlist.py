@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 
 from bs4 import BeautifulSoup
+import os
+import sys
+
 
 version = 0.5
 
@@ -10,11 +13,12 @@ print(app_title)
 print("-" * len(app_title))
 
 
+
 ALBUMS_PATH = "albums/"
 ARTISTS_PATH = "artists/"
 GENRES_PATH = "genres/"
 SONGS_PATH = "songs/"
-COVERS_PATH = "songs/covers/
+COVERS_PATH = "songs/covers/"
 
 albums = []
 artists = []
@@ -45,10 +49,20 @@ def menu_opciones():
 
 
 def show_menu_albums():
+    global albums
+
     print("-----Albums Menu-----")
     print("1. List all albums")
     print("2. Search album by title")
     print("0. Return")
+    eleccion_menu = input("Elige una opción (entre 0 y 2):")
+
+    if eleccion_menu.isdigit():
+        eleccion_menu = int(eleccion_menu)
+        if eleccion_menu == 1:
+            for album in albums:
+                print(album["id"], " ",album["title"])
+
 
 def show_menu_artists():
     print("-----Artists Menu-----")
@@ -74,20 +88,26 @@ def open_xml (file_path):
 
     return BeautifulSoup(file_xml, 'xml')
 
-def load_album (album_num):
+
+def load_album (file_name):
+    file_path = ALBUMS_PATH+file_name
+
+    album_xml = open_xml(file_path)
+
+    album = {
+            "id": album_xml.album["id"],
+            "title": album_xml.title.text,
+    }
+
+
+def load_album_num (album_num):
     global ALBUMS_PATH
 
     file_name = "album_"+str(album_num)+".xml"
 
-    file_path = ALBUMS_PATH+file_name
+    return load_album(file_name)
 
-    album_xml = open_xml(file_path)
-    
-    album = {
-            "id": album_xml.album['id'],
-            "title": album_xml.title.text,
-    }
-
+"""
     album = {
             "id": 1,
             "title": "TITULO!!!",
@@ -116,8 +136,29 @@ def load_album (album_num):
         }
 
     return album_xml
+"""
 
-print(load_album(1))
+def load_albums ():
+    global ALBUMS_PATH
+    global albums
+
+    albums_dir = os.listdir(ALBUMS_PATH)
+
+    albums_dir.sort()
+
+    for album in albums_dir:a
+        if not album.endswith(".xml"):
+            continue
+            
+        albums.append(load_album(album))
+    print(albums)
+
+
+
+load_albums()
+
+
+#print(load_album(1))
 
 sys.exit()
 
