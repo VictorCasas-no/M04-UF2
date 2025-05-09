@@ -18,7 +18,7 @@ ALBUMS_PATH = "albums/"
 ARTISTS_PATH = "artists/"
 GENRES_PATH = "genres/"
 SONGS_PATH = "songs/"
-COVERS_PATH = "songs/covers/"
+COVERS_PATH = "albums/covers/"
 
 albums = []
 artists = []
@@ -156,6 +156,8 @@ def load_albums ():
 
 
 load_albums()
+
+def show_album_cover (album_id)
 
 
 #print(load_album(1))
